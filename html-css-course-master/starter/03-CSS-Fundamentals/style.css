@@ -1,0 +1,90 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
+h1,
+h2,
+h3 {
+  color: rgb(45, 45, 172);
+}
+
+.header {
+  background-color: rgb(172, 172, 218);
+}
+
+#article {
+  background-color: rgb(202, 228, 190);
+}
+
+aside ul li p {
+  background-color: blueviolet;
+}
+
+:is(h1, h2, h3) {
+  background-color: brown;
+}
+
+li:first-child {
+  font-weight: bold;
+}
+
+li:last-child {
+  color: violet;
+}
+
+li:last-child {
+  color: violet;
+}
+
+li:nth-child(2) {
+  font-family: sans-serif;
+}
+
+article p:last-child {
+  color: red;
+  border: 5px solid black;
+}
+
+a:link {
+  background-color: rgb(8, 255, 41);
+  text-decoration: none;
+  margin-top: 10;
+  margin-left: 20;
+  display: inline-block;
+}
+
+a:visited {
+  background-color: rgb(153, 0, 255);
+}
+
+a:hover {
+  background-color: rgb(255, 0, 255);
+}
+
+a:visited {
+  background-color: rgb(255, 0, 0);
+}
+
+/* this is a good tric  */
+body {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-image {
+  height: 1000;
+  width: 1000;
+  border: 5px solid black;
+}
+
+.class01 {
+  height: 200px;
+  width: 200px;
+  background: yellow;
+  /* display: inline; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

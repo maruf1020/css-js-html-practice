@@ -1,0 +1,131 @@
+let mainDataList = document.querySelectorAll(".echo-team-short");
+let personList = [];
+let singlePerson;
+let category = 0;
+let subCategory = 0;
+let categoryType = 0;
+let startIndex = 0;
+let endIndex = 8;
+let pageNumber = 1;
+let selectedChatagory = 0;
+function removeElementsByClass(className){
+    const elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+function getElementsByClass(tagType, className) {
+    var elems = document.getElementsByTagName(tagType);
+    var returns = [];
+    for (var i in elems) {
+        if ((' ' + elems[i].className + ' ').indexOf(' ' + className + ' ') > -1) {
+            returns.push(elems[i]);
+        }
+    }
+    return returns;
+}
+for(let i = 0; i < mainDataList.length; i++){
+    if(mainDataList[i].children[2].firstChild.textContent.includes("COO")){
+        category = 1;
+    }else if(mainDataList[i].children[2].firstChild.textContent.includes("CTO")){
+        category = 1;
+    }else if(mainDataList[i].children[2].firstChild.textContent.includes("Software Engineer")){
+        category = 2;
+    }else if(mainDataList[i].children[2].firstChild.textContent.includes("QA Engineer")){
+        category = 3;
+    }else{
+        category = 4;
+    }
+    let singlePerson = {
+        name:mainDataList[i].children[1].firstChild.textContent,
+        designation:mainDataList[i].children[2].firstChild.textContent,
+        imageUrl:mainDataList[i].childNodes[1].attributes[0].nodeValue,
+        category: category,
+        subCategory: subCategory}
+        ;
+    personList.push(singlePerson)
+    category = 0;
+    subCategory = 0;
+}
+removeElementsByClass("echo-team-short");
+var dynamic = document.createElement("div");
+dynamic.innerHTML = `<div><div id="filters" class="echo-button-group text-center"><button class="echo-button-without-bg echo-filter-button" id="all" data-filter=".all">All</button><button class="echo-button-without-bg echo-filter-button" id="coo-and-cto" data-filter=".coo-and-cto">COO and CTO</button><button class="echo-button-without-bg echo-filter-button" id="software_engineer" data-filter=".software_engineer">Software Engineer</button><button class="echo-button-without-bg echo-filter-button" id="qa-engineer" data-filter=".qa-engineer">QA Engineer</button><button class="echo-button-without-bg echo-filter-button" id="business-and-others" data-filter=".business-and-others">Business And Others</button></div><div id="filters" class="echo-button-group text-center"><button class="echo-button-without-bg echo-filter-button" id="previous" data-filter=".previous">Previous </button><button class="echo-button-without-bg echo-filter-button" id="next" data-filter=".next">Next</button></div>`;
+var elements = getElementsByClass("div", "section-sub-heading text-center");
+if (elements.length > 0) {
+    // just change the first, as you did in your post
+    elements[0].parentNode.insertBefore(dynamic, elements[0].nextSibling);
+}
+var filterPersonList = personList.filter(function (el) {
+  return el.category == categoryType;
+});
+filterData(0,1);
+selectedChatagory = 0;
+function filterData(dataType,  pageNo){
+    filterPersonList = personList;
+removeElementsByClass("echo-team-short");
+categoryType = dataType;
+filterPersonList = personList.filter(function (el) {
+    if(categoryType == 0){
+        return personList;
+    }else{
+        return el.category == categoryType;
+    }
+  
+});
+htmlRenderData =`<div class="row">`
+    startIndex = (pageNo-1) * 8;
+    endIndex = (filterPersonList.length < pageNo * 8) ? filterPersonList.length : pageNo * 8;
+for(let i = startIndex; i < endIndex; i++){
+    htmlRenderData +=`<div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100"><div class="echo-team-short text-center" data-echoteamid="318"><img src="${filterPersonList[i].imageUrl}" class="echo-team-img" alt="Tasin Reza"><h3 class="echo-team-name">${filterPersonList[i].name}</h3><p class="echo-team-designation">${filterPersonList[i].designation}</p></div></div>`
+}
+htmlRenderData +=`</div>`
+var dynamic = document.createElement("div");
+dynamic.innerHTML = htmlRenderData;
+var elements = getElementsByClass("div", "echo-button-group text-center");
+if (elements.length > 0) {
+    // just change the first, as you did in your post
+    elements[0].parentNode.insertBefore(dynamic, elements[0].nextSibling);
+}
+}
+document.getElementById("all").onclick = function(){
+    filterData(0,1);
+    selectedChatagory = 0;
+    pageNumber = 1;
+};
+document.getElementById("coo-and-cto").onclick = function(){
+    filterData(1,1);
+    selectedChatagory = 1;
+    pageNumber = 1;
+};
+document.getElementById("software_engineer").onclick = function(){
+    filterData(2,1);
+    selectedChatagory = 2;
+    pageNumber = 1;
+};
+document.getElementById("qa-engineer").onclick = function(){
+    filterData(3,1);
+    selectedChatagory = 3;
+    pageNumber = 1;
+};
+document.getElementById("business-and-others").onclick = function(){
+    filterData(4,1);
+    selectedChatagory = 4;
+    pageNumber = 1;
+};
+document.getElementById("next").onclick = function(){
+    if((pageNumber*8) < (filterPersonList.length)){        
+        pageNumber++;
+        filterData(selectedChatagory,pageNumber);
+    }else{
+        filterData(selectedChatagory,pageNumber);
+    }
+    
+};
+document.getElementById("previous").onclick = function(){
+    if(pageNumber > 1){        
+        pageNumber--;
+        filterData(selectedChatagory,pageNumber);
+    }else{
+        filterData(selectedChatagory,pageNumber);
+    }
+};

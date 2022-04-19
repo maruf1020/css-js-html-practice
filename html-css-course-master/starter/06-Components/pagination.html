@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pagination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .pagination--container {
+        font-family: "Inter", sans-serif;
+        margin-top: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .btn {
+        border: none;
+        background-color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+
+      .btn--arrow {
+        border: 1px solid #087250;
+        width: 36px;
+        height: 36px;
+        color: #087250;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn:hover,
+      .btn:visited,
+      .btn--active {
+        background-color: #087250;
+        color: #fff;
+      }
+
+      .text {
+        color: rgb(161, 161, 161);
+      }
+
+      .btn--arrow .svg--icon {
+        height: 16px;
+        width: 16px;
+      }
+
+      .btn--arrow:hover .svg--icon {
+        /* background-color: aqua; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pagination--container">
+      <button class="btn btn--arrow">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="svg--icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button class="btn">1</button>
+      <button class="btn">2</button>
+      <button class="btn btn--active">3</button>
+      <button class="btn">4</button>
+      <button class="btn">5</button>
+      <button class="btn">6</button>
+      <span class="text">...</span>
+      <button class="btn">23</button>
+      <button class="btn btn--arrow">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="svg--icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+  </body>
+</html>
